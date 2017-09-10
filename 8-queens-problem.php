@@ -105,35 +105,35 @@
       right[inputRow - inputCol + n - 1] = 1;
     }
 
-    function Try(queen, n) {
+    function Try(row, n) {
       for (var i = 0; i < n; i++) {
-        if (queen === inputRow) {
-          if (queen === n - 1) {
+        if (row === inputRow) {
+          if (row === n - 1) {
             Out();
             break;
           } else {
-            Try(queen + 1, n);
+            Try(row + 1, n);
             continue;
           }
         }
         if (
           col[i] === 0 &&
-          left[queen + i] === 0 &&
-          right[queen - i + n - 1] === 0 &&
+          left[row + i] === 0 &&
+          right[row - i + n - 1] === 0 &&
           i !== inputCol
         ) {
-          chessBoard[queen][i] = 1;
+          chessBoard[row][i] = 1;
           col[i] = 1;
-          left[queen + i] = 1;
-          right[queen - i + n - 1] = 1;
-          if (queen === n - 1) {
+          left[row + i] = 1;
+          right[row - i + n - 1] = 1;
+          if (row === n - 1) {
             Out();
           } else {
-            Try(queen + 1, n);
-            chessBoard[queen][i] = 0;
+            Try(row + 1, n);
+            chessBoard[row][i] = 0;
             col[i] = 0;
-            left[queen + i] = 0;
-            right[queen - i + n - 1] = 0;
+            left[row + i] = 0;
+            right[row - i + n - 1] = 0;
           }
         }
       }
