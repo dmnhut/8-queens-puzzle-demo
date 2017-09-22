@@ -1,0 +1,29 @@
+.Lobster {
+  font-family: Lobster;
+}
+
+body {
+  background-color: black;
+  color: #0d0d0d;
+}
+
+h3 {
+  /*font-family:monospace;
+    color:#588c7e;*/
+}
+
+p {
+  font-size: 16px;
+  font-family: monospace;
+}
+
+.block {
+  background-color: #ffeead;
+  color: black;
+  border: 0px solid #000000;
+}
+
+.block:hover {
+  background-color: #ffcc5c;
+  color: white;
+}
