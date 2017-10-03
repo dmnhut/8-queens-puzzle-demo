@@ -4,17 +4,44 @@
 <head>
   <meta charset="utf-8">
   <title>8 queens problem</title>
+  <link rel="icon" type="image/png" href="" sizes="32x32">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="stylesheet.css" />
-  <link rel="icon" type="image/png" href="" sizes="32x32">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="script.js"></script>
+  <script>
+   $(document).ready(function(){
+   $("#btn-Go").click(function(){
+      Go(Number(document.getElementById('txt-row').value), Number(document.getElementById('txt-col').value), Number(document.getElementById('txt-size').value));
+   });
+  });
+  Result();
+ </script>
 </head>
 
 <body>
   <div class="container container-fluid">
     <div class="jumbotron">
+      <hr />
+      <div class="row">
+        <div class="col-sm-12">
+            <div class="col-sm-3">
+              <input class="form-control" id="txt-row" placeholder="nhập cột" />
+            </div>
+            <div class="col-sm-3">
+              <input class="form-control" id="txt-col" placeholder="nhập hàng" />
+            </div>
+            <div class="col-sm-3">
+              <input class="form-control" id="txt-size" placeholder="cỡ bàn cờ" />
+            </div>
+            <div class="col-sm-3">
+              <button class="btn btn-primary" id="btn-Go">Go</button>
+            </div>
+        </div>
+      </div>
+      <br />
       <div class="row">
         <div class="col-xs-12">
           <table class="table table-hover">
