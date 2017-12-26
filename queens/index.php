@@ -28,13 +28,13 @@
       <div class="row">
         <div class="col-sm-12">
             <div class="col-sm-3">
-              <input class="form-control" id="txt-row" placeholder="nhập cột" />
+              <input class="form-control" id="txt-row" placeholder="column" />
             </div>
             <div class="col-sm-3">
-              <input class="form-control" id="txt-col" placeholder="nhập hàng" />
+              <input class="form-control" id="txt-col" placeholder="row" />
             </div>
             <div class="col-sm-3">
-              <input class="form-control" id="txt-size" placeholder="cỡ bàn cờ" />
+              <input class="form-control" id="txt-size" placeholder="n" />
             </div>
             <div class="col-sm-3">
               <button class="btn btn-primary" id="btn-Go">Go</button>
@@ -54,6 +54,15 @@
                   $x = json_decode($_COOKIE['row']);
                   $y = json_decode($_COOKIE['col']);
                   $n = json_decode($_COOKIE['num']);
+                  if($n<8){
+                    $div = '<div class="col-sm-6 col-sm-offset-3">';
+                  } else {
+                    if($n>=8 && $n < 10){
+                      $div = '<div class="col-sm-8 col-sm-offset-2">';
+                    }else{
+                      $div = '<div class="col-sm-12">';
+                    }
+                  }
                   echo '<p class="text-right">Go('.$x.', '.$y.', '.$n.')</span></p>';
                  ?>
               </td>
@@ -62,8 +71,8 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
-          <table class="table table-bordered">
+        <?php echo $div; ?>
+          <table class="table">
             <?php
               $json = json_decode($_COOKIE['json']);
               for($i = 0; $i < $n; $i++){
@@ -92,7 +101,7 @@
         </div>
       </div>
     </div>
-    <div class="jumbotron">
+    <!-- <div class="jumbotron">
       <?php
       for($i = 0; $i < $n; $i++){
         echo '<h3>';
@@ -102,7 +111,7 @@
         echo '</h3>';
       }
       ?>
-    </div>;
+    </div>; -->
   </div>
 </body>
 

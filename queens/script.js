@@ -1,70 +1,66 @@
-var chessBoard = [];
-var col = [];
-var left = [];
-var right = [];
+var board = [];
+var column = [];
+var arrLeft = [];
+var arrRight = [];
 var json = "json";
-var num;
-var count = 0;
+var n;
 var inputRow;
 var inputCol;
 
-function Go(x, y, n) {
+function Go() {
   var args = Array.from(arguments);
   switch (args.length) {
     case 0:
-      x = 0;
-      y = 0;
+      inputRow = 0;
+      inputCol = 0;
       n = 8;
       break;
     case 1:
-      x = 0;
-      y = 0;
+      inputRow = 0;
+      inputCol = 0;
       n = args[0];
       break;
     case 2:
-      x = args[0];
-      y = args[1];
+      inputRow = args[0];
+      inputCol = args[1];
       n = 8;
       break;
     case 3:
-      x = args[0];
-      y = args[1];
+      inputRow = args[0];
+      inputCol = args[1];
       n = args[2];
       break;
     default:
       console.log("Fail");
       return;
   }
-  for (var i = 0; i < n; i++) {
-    chessBoard[i] = [];
+  var i, j;
+  for (i = 0; i < n; i++) {
+    board[i] = [];
   }
   for (i = 0; i < n; i++) {
-    for (var j = 0; j < n; j++) {
-      chessBoard[i][j] = 0;
+    for (j = 0; j < n; j++) {
+      board[i][j] = 0;
     }
   }
   for (i = 0; i < n; i++) {
-    col[i] = 0;
+    column[i] = 0;
   }
   for (i = 0; i < 2 * n - 1; i++) {
-    left[i] = 0;
-    right[i] = 0;
+    arrLeft[i] = 0;
+    arrRight[i] = 0;
   }
-  Input(n, x, y);
+  Input();
   Try(0, n);
   location.reload();
   Result();
 }
 
-function Input(n, x, y) {
-  count = 0;
-  num = n;
-  inputRow = x;
-  inputCol = y;
-  chessBoard[inputRow][inputCol] = 1;
-  col[inputCol] = 1;
-  left[inputCol + inputRow] = 1;
-  right[inputRow - inputCol + n - 1] = 1;
+function Input() {
+  board[inputRow][inputCol] = 1;
+  column[inputCol] = 1;
+  arrLeft[inputCol + inputRow] = 1;
+  arrRight[inputRow - inputCol + n - 1] = 1;
 }
 
 function Try(row, n) {
@@ -78,37 +74,31 @@ function Try(row, n) {
         continue;
       }
     }
-    if (
-      col[i] === 0 &&
-      left[row + i] === 0 &&
-      right[row - i + n - 1] === 0 &&
-      i !== inputCol
-    ) {
-      chessBoard[row][i] = 1;
-      col[i] = 1;
-      left[row + i] = 1;
-      right[row - i + n - 1] = 1;
+    if (column[i] === 0 && arrLeft[row + i] === 0 && arrRight[row - i + n - 1] === 0 && i !== inputCol) {
+      board[row][i] = 1;
+      column[i] = 1;
+      arrLeft[row + i] = 1;
+      arrRight[row - i + n - 1] = 1;
       if (row === n - 1) {
         Out();
       } else {
         Try(row + 1, n);
-        chessBoard[row][i] = 0;
-        col[i] = 0;
-        left[row + i] = 0;
-        right[row - i + n - 1] = 0;
+        board[row][i] = 0;
+        column[i] = 0;
+        arrLeft[row + i] = 0;
+        arrRight[row - i + n - 1] = 0;
       }
     }
   }
 }
 
 function Out() {
-  count++;
-  json = JSON.stringify(chessBoard);
+  json = JSON.stringify(board);
+  arrFromJson = json;
   document.cookie = "json=" + json;
-  document.cookie = "num=" + num;
+  document.cookie = "num=" + n;
   document.cookie = "row=" + inputRow;
   document.cookie = "col=" + inputCol;
-  document.cookie = "count=" + count;
 }
 
 function Result() {
