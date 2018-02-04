@@ -28,10 +28,10 @@
       <div class="row">
         <div class="col-sm-12">
             <div class="col-sm-3">
-              <input class="form-control" id="txt-row" placeholder="column" />
+              <input class="form-control" id="txt-row" placeholder="row" />
             </div>
             <div class="col-sm-3">
-              <input class="form-control" id="txt-col" placeholder="row" />
+              <input class="form-control" id="txt-col" placeholder="column" />
             </div>
             <div class="col-sm-3">
               <input class="form-control" id="txt-size" placeholder="n" />
